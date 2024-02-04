@@ -86,6 +86,7 @@ ol {
 /*весь блок Поиск*/
 .search-form {
   display: flex;
+  /* flex-wrap:wrap; */
   flex-direction: row;
   justify-content: space-between;
   min-width: 711px;
@@ -94,13 +95,14 @@ ol {
 
 /*Элемент блока Поиск*/
 .search-form__fieldset {
+  /* display: inline-flex; */
   width: 225px;
   height: 54px;
-  outline: 1px solid rgb(0, 115, 255);
 }
 
 /*Город, Время суток*/
 .search-form__fieldset-title {
+  position: relative;
   padding-left: 5px;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
@@ -113,8 +115,11 @@ ol {
 
 /*Изменение формы курсора при наведении */
 .search-form__label {
+  position: relative;
   width: fit-content;
   cursor: pointer;
+  /* outline: 1px solid #15ff00;
+  outline-offset: 1px; */
 }
 
 /*Город, Утро, День, Ночь*/
@@ -166,18 +171,18 @@ input[type="text"] {
 /*//1.2.1 checkbox//*/
 /*поле чекбоксов*/
 .search-form__checkbox-list {
-  display: inline-flex;
+  display: flex;
   gap: 15px;
   margin-top: 5px;
   padding-left: 5px;
 }
 
-/*закрашивание белым цветом чекбокса при нажатии и удержании кнопки мыши на чекбокс*/
+/*Закрашивание белым цветом чекбокса при нажатии и удержании кнопки мыши на чекбокс*/
 .search-form__label:active:not(:disabled) .search-form__pseudo-checkbox {
   background-color: #fff;
 }
 
-/* подготовка места для чекбокса*/
+/*Подготовка места для чекбокса*/
 .search-form__pseudo-checkbox {
   position: relative;
   display: inline-block;
@@ -236,12 +241,31 @@ input[type="text"] {
 .search-form__label:hover:not(:disabled):not(:active) .search-form__label-text {
   text-decoration: underline solid #fff;
   text-underline-position: under;
+  text-decoration-thickness: 1px;
 }
 
+/*Прорисовка выделительной рамки вокруг чекбокса при наведении курсора на checkbox*/
+/* .search-form__label:hover:not(:disabled):not(:active) {
+  outline: 1px solid #1100ff;
+  outline-offset: 2px;
+} */
+
 /*Прорисовка выделительной рамки вокруг чекбокс-label при табуляции*/
-.search-form__label-text:focus-visible {
+/* label:focus-within {
+  outline: 1px solid #f00;
+  outline-offset: 2px;
+} */
+
+.search-form__label:focus-visible {
   outline: 1px solid #ff0000;
+  outline-offset: 3px;
 }
+
+
+/* label:focus {
+  outline: 1px solid #ff0000;
+  background-color: #ff0000;
+} */
 
 /*//1.2.2 Кнопка "Найти"//*/
 .button {
@@ -271,8 +295,8 @@ input[type="text"] {
 }
 
 /*////2.1 Блок Титул ////*/
+ /*смотри в окно*/
 .title {
-  /*смотри в окно*/
   width: 260px;
   height: 210px;
   margin-bottom: 26px;
@@ -311,7 +335,6 @@ input[type="text"] {
 
 /*проявление тонкого scrollbar по оси Y при наведении курсора*/
 .content__list:hover {
-  overflow: overlay;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
