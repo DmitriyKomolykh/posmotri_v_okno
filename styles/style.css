@@ -9,13 +9,13 @@ html {
 }
 
 .page {
-  inline-size: 1200px;
-  block-size: 100%;
   margin: auto;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
+  inline-size: 1200px;
+  block-size: 100%;
 }
 
 h1,
@@ -29,10 +29,422 @@ li,
 blockquote,
 fieldset {
   margin: 0;
+  border: none;
   padding: 0;
 }
 
 ul,
 ol {
   list-style: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  inline-size: 1px;
+  block-size: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/*////////////////MAIN////////////////*/
+.content {
+  display: flex;
+  gap: 30px;
+  width: 1140px;
+  height: 534px;
+  margin: 133px 30px;
+}
+
+/*////////1 Блок Видео с поисковиком////////*/
+.result {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: flex-end;
+  width: 711px;
+  height: 456px;
+}
+
+/*////1.1 Окно Видео////*/
+.result__video-container {
+  position: relative;
+  display: block;
+  width: 711px;
+  height: 386px;
+}
+
+.result__video {
+  min-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+/*////1.2 Блок Поиск////*/
+/*весь блок Поиск*/
+.search-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 711px;
+  height: 54px;
+}
+
+/*Элемент блока Поиск*/
+.search-form__fieldset {
+  width: 225px;
+  height: 54px;
+  outline: 1px solid rgb(0, 115, 255);
+}
+
+/*Город, Время суток*/
+.search-form__fieldset-title {
+  padding-left: 5px;
+  color: #fff;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  line-height: normal;
+  text-transform: none;
+}
+
+/*Изменение формы курсора при наведении */
+.search-form__label {
+  width: fit-content;
+  cursor: pointer;
+}
+
+/*Город, Утро, День, Ночь*/
+.search-form__label-text {
+  color: #fff;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  line-height: normal;
+  text-transform: none;
+  appearance: none;
+}
+
+/*Поле Input_"Санкт Петербург, например"*/
+.search-form__textfield {
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid #fff;
+  border-right: none;
+  border-left: none;
+  color: rgba(255, 255, 255, 0.70);
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  appearance: none;
+}
+
+/*Прорисовка рамки вокруг инпута и удаление верхней*/
+/* и нижней линии при нажатии и удержании кнопки мыши*/
+.search-form__textfield:active {
+  display: block;
+  border-top: 1px solid #1b1919;
+  border-bottom: 1px solid #1b1919;
+  outline: 1px solid #fff;
+}
+
+/*Прорисовка рамки вокруг инпута только при табуляции*/
+.search-form__textfield:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 2px;
+}
+
+/*Изменение цвета вводимого текста*/
+input[type="text"] {
+  color: #fff;
+}
+
+/*//1.2.1 checkbox//*/
+/*поле чекбоксов*/
+.search-form__checkbox-list {
+  display: inline-flex;
+  gap: 15px;
+  margin-top: 5px;
+  padding-left: 5px;
+}
+
+/*закрашивание белым цветом чекбокса при нажатии и удержании кнопки мыши на чекбокс*/
+.search-form__label:active:not(:disabled) .search-form__pseudo-checkbox {
+  background-color: #fff;
+}
+
+/* подготовка места для чекбокса*/
+.search-form__pseudo-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  vertical-align: middle;
+  color: inherit;
+}
+
+/*Прорисовка рамки чекбокса*/
+.search-form__pseudo-checkbox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ffffff;
+  background-color: inherit;
+}
+
+/*отметка выбранныых кнопок, доработываем псевдоэлементы*/
+.search-form__pseudo-checkbox::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  outline: 1px solid #ffffff;
+  outline-offset: 1px;
+  opacity: 0;
+  background-color: #fff;
+}
+
+.search-form__pseudo-checkbox::after,
+.search-form__pseudo-checkbox::before {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/*Добавляем отметку*/
+.search-form__checkbox:checked+.search-form__pseudo-checkbox::before {
+  opacity: 0;
+}
+
+.search-form__checkbox:checked+.search-form__pseudo-checkbox::after {
+  opacity: 1;
+}
+
+/*Прорисовка выделительной рамки вокруг чекбокса при наведении курсора на checkbox*/
+.search-form__label:hover .search-form__checkbox:not(:disabled):not(:active)+.search-form__pseudo-checkbox {
+  outline: 1px solid #fff;
+}
+
+/* Подчеркивание текста при наведении курсора на checkbox*/
+.search-form__label:hover:not(:disabled):not(:active) .search-form__label-text {
+  text-decoration: underline solid #fff;
+  text-underline-position: under;
+}
+
+/*Прорисовка выделительной рамки вокруг чекбокс-label при табуляции*/
+.search-form__label-text:focus-visible {
+  outline: 1px solid #ff0000;
+}
+
+/*//1.2.2 Кнопка "Найти"//*/
+.button {
+  border: 1px solid #FFF;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search-form__submit-button {
+  width: 194px;
+  height: 34px;
+  margin-top: 20px;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  text-transform: none;
+  background-color: transparent;
+}
+
+/*//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+/*////////2 Блок Титул и Карточки////////*/
+.content__details {
+  width: 415px;
+  height: 537px;
+}
+
+/*////2.1 Блок Титул ////*/
+.title {
+  /*смотри в окно*/
+  width: 260px;
+  height: 210px;
+  margin-bottom: 26px;
+  padding-top: 3px;
+  color: #FFF;
+  font-family: Oswald;
+  font-weight: 700;
+  font-size: 75px;
+  font-style: normal;
+  line-height: 94%;
+  text-transform: uppercase;
+}
+
+.content__accent {
+  /*По-*/
+  color: #545050;
+  font-family: Oswald;
+  font-weight: 700;
+  font-size: 75px;
+  font-style: normal;
+  line-height: 94%;
+  text-transform: uppercase;
+}
+
+/*////2.2 Блок Карточки ////*/
+/* всё окно отображение карточек*/
+.content__list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 406px;
+  height: 298px;
+  overflow: hidden;
+}
+
+/*проявление тонкого scrollbar по оси Y при наведении курсора*/
+.content__list:hover {
+  overflow: overlay;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.content__list-item {
+  width: 398px;
+  height: 107px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+/*убираем подчеркивание текста ссылки*/
+.content__card-link {
+  display: block;
+  text-decoration: none;
+}
+
+/*Блок: Заголовок и Абзац, Видео*/
+.content__video-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 398px;
+  height: 107px;
+}
+
+/*Блок Заголовок и Абзац*/
+.content__video-card-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px 0;
+  width: 200px;
+  height: 101px;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+.content__video-card-title {
+  width: 100%;
+  width: 200px;
+  height: 30px;
+  height: 30px;
+  color: #FFF;
+  font-family: Oswald;
+  font-weight: 700;
+  font-size: 30px;
+  font-style: normal;
+  line-height: 100%;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+}
+
+/*Абзац*/
+.content__video-card-description {
+  width: 200px;
+  height: 65px;
+  color: #FFF;
+  font-family: "Fira Sans Condensed";
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 16px;
+}
+
+/*Окно Видео*/
+.content__video-card-thumbnail {
+  min-width: 194px;
+  max-height: 104px;
+  margin: 2px 2px 2px 0;
+  object-fit: cover;
+}
+
+.content__card-link:focus {
+  outline: none;
+}
+
+.content__card-link:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: -1px;
+}
+
+/* Подчеркивание текста при наведении курсора*/
+.content__card-link:hover .content__video-card-title {
+  text-decoration: underline solid #fff;
+  text-decoration-thickness: 2px;
+  text-underline-position: under;
+}
+
+.content__card-link:hover .content__video-card-description {
+  text-decoration: underline solid #fff;
+  text-decoration-thickness: 1px;
+  text-underline-position: under;
+}
+
+/* Убираем подчеркивание текста при нажатии на карточку*/
+/* Меняем фон карточки при нажатии на карточку*/
+.content__card-link:active .content__video-card-title,
+.content__card-link:active .content__video-card-description,
+.content__card-link:active {
+  text-decoration: none;
+  background-color: #545050;
+}
+
+
+/*Кнопка "Показать ещё"*/
+.more-button {
+  position: relative;
+  justify-content: center;
+  width: 399px;
+  height: 34px;
+  font-family: "Fira Sans Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  font-style: normal;
+  line-height: normal;
+  text-align: center;
+  background-color: transparent;
+}
+
+/* Подчеркивание текста при наведении курсора*/
+.button:hover {
+  text-decoration: underline solid #fff;
+  text-underline-position: under;
+}
+
+/* меняем фон кнопки и убираем подчеркивание текста при нажатии кнопки*/
+.button:active {
+  text-decoration: none;
+  background-color: #545050;
+}
+
+.button:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: -3px;
 }
