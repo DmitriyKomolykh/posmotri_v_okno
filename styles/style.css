@@ -9,13 +9,13 @@ html {
 }
 
 .page {
-  margin: 133px 30px;
+  margin: auto;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
   inline-size: 1200px;
-  block-size: 100%;
+  block-size: auto;
 }
 
 h1,
@@ -36,6 +36,16 @@ fieldset {
 ul,
 ol {
   list-style: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  inline-size: 1px;
+  block-size: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /*////////////////MAIN////////////////*/
@@ -99,24 +109,15 @@ ol {
   text-transform: none;
 }
 
-.search-form__label {
+.search-form__label { 
   width: fit-content;
   cursor: pointer;
 }
 
-.visually-hidden {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  inline-size: 1px;
-  block-size: 1px;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-
-/*Город, Утро, День, Ночь*/
+/*Утро, День, Ночь*/
 .search-form__label-text {
+  display: inline-block;
+  vertical-align: middle;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 400;
@@ -167,20 +168,14 @@ input[type="text"] {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 15px;
   margin-top: 5px;
 }
 
-/*Закрашивание белым цветом чекбокса при нажатии и удержании кнопки мыши на чекбокс*/
-.search-form__label:active:not(:disabled) .search-form__pseudo-checkbox {
-  background-color: #fff;
-}
 
-/*Подготовка места для чекбокса*/
+/* подготовка места для чекбокса*/
 .search-form__pseudo-checkbox {
-  position: relative;
-  bottom: 1px;
-  z-index: 0;
   display: inline-block;
   width: 19px;
   height: 19px;
@@ -191,21 +186,20 @@ input[type="text"] {
 /*Прорисовка рамки чекбокса*/
 .search-form__pseudo-checkbox::before {
   content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: inline-block;
   width: 100%;
   height: 100%;
   border: 1px solid #ffffff;
   background-color: inherit;
 }
 
-/*отметка выбранныых кнопок, доработываем псевдоэлементы*/
+/*отметка выбранных кнопок, доработываем псевдоэлементы*/
 .search-form__pseudo-checkbox::after {
   content: '';
-  position: absolute;
-  top: 2px;
+  position: relative;
+  bottom: 22px;
   left: 2px;
+  display: block;
   width: 15px;
   height: 15px;
   outline: 1px solid #ffffff;
@@ -228,10 +222,10 @@ input[type="text"] {
   opacity: 1;
 }
 
-/*Прорисовка выделительной рамки вокруг чекбокса при наведении курсора на checkbox*/
-/* .search-form__label:hover .search-form__checkbox:not(:disabled):not(:active)+.search-form__pseudo-checkbox {
-  outline: 1px solid #fff;
-} */
+/*Закрашивание белым цветом чекбокса при нажатии и удержании кнопки мыши на чекбокс*/
+.search-form__label:active:not(:disabled) .search-form__pseudo-checkbox {
+  background-color: #fff;
+}
 
 /* Подчеркивание текста при наведении курсора на checkbox*/
 .search-form__label:hover:not(:disabled):not(:active) .search-form__label-text {
@@ -240,7 +234,8 @@ input[type="text"] {
   text-underline-position: under;
 }
 
-.search-form__label:focus-within:not(:hover) {
+/*Прорисовка рамки вокруг label только при табуляции*/
+.search-form__label:has(:focus-visible) {
   outline: 1px solid #fff;
   outline-offset: 1px;
 }
@@ -274,6 +269,7 @@ input[type="text"] {
 /*////2.1 Блок Титул ////*/
 /*смотри в окно*/
 .title {
+  display: block;
   width: 260px;
   height: 210px;
   margin-bottom: 26px;
@@ -287,8 +283,8 @@ input[type="text"] {
   text-transform: uppercase;
 }
 
-.content__accent {
   /*По-*/
+.content__accent {
   color: #545050;
   font-family: Oswald, sans-serif;
   font-weight: 700;
