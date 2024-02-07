@@ -9,13 +9,16 @@ html {
 }
 
 .page {
+  display: grid;
+  justify-content:center;
+  align-content:center;
   margin: auto;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
   inline-size: 1200px;
-  block-size: auto;
+  block-size: 100%;
 }
 
 h1,
@@ -51,20 +54,21 @@ ol {
 /*////////////////MAIN////////////////*/
 .content {
   display: flex;
+  justify-content:center;
+  align-items:end;
   gap: 30px;
   width: 1140px;
-  height: 534px;
-  margin: 133px 30px;
 }
 
 /*////////1 Блок Видео с поисковиком////////*/
 .result {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-content:center;
+  align-content:center;
   gap: 16px;
-  align-self: flex-end;
   width: 711px;
-  height: 456px;
+  max-height: 100%;
+  margin-top: 78px;
 }
 
 /*////1.1 Окно Видео////*/
@@ -75,31 +79,30 @@ ol {
 }
 
 .result__video {
-  min-width: 100%;
-  max-height: 100%;
+  min-width: 100%; 
+  max-height: 100%; 
   object-fit: cover;
+  object-position: top;
 }
 
 /*////1.2 Блок Поиск////*/
 /*весь блок Поиск*/
 .search-form {
-  display: flex;
   display: inline-flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items:end;
   width: 711px;
-  height: 54px;
+  max-height: 100%;
 }
 
 /*Элемент блока Поиск*/
 .search-form__fieldset {
-  width: 225px;
-  height: 54px;
+  max-width: 225px; 
+  height: 100%;
 }
 
 /*Город, Время суток*/
 .search-form__fieldset-title {
-  padding-left: 3px;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 400;
@@ -110,14 +113,14 @@ ol {
 }
 
 .search-form__label { 
-  width: fit-content;
+  width: fit-content; 
   cursor: pointer;
 }
 
 /*Утро, День, Ночь*/
 .search-form__label-text {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 400;
@@ -130,9 +133,8 @@ ol {
 
 /*Поле Input_"Санкт Петербург, например"*/
 .search-form__textfield {
-  width: 100%;
+  min-width: 225px;
   margin-top: 6px;
-  margin-bottom: 35px;
   border: 1px solid #fff;
   border-right: none;
   border-left: none;
@@ -158,7 +160,7 @@ ol {
 }
 
 /*Изменение цвета вводимого текста*/
-input[type="text"] {
+.search-form__textfield {
   color: #fff;
 }
 
@@ -166,61 +168,29 @@ input[type="text"] {
 /*поле чекбоксов*/
 .search-form__checkbox-list {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 15px;
-  margin-top: 5px;
-}
-
-
-/* подготовка места для чекбокса*/
-.search-form__pseudo-checkbox {
-  display: inline-block;
-  width: 19px;
   height: 19px;
-  vertical-align: middle;
-  color: inherit;
+  margin-top: 6px;
 }
 
 /*Прорисовка рамки чекбокса*/
-.search-form__pseudo-checkbox::before {
-  content: '';
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #ffffff;
-  background-color: inherit;
-}
+.search-form__pseudo-checkbox {
+  display: inline-flex;
+  justify-content:center;
+  align-items:center;
+  border: 1px solid #fff;
+  inline-size: 19px;
+  block-size: 19px;
 
-/*отметка выбранных кнопок, доработываем псевдоэлементы*/
-.search-form__pseudo-checkbox::after {
+}
+/*отметка выбранных кнопок*/
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
   content: '';
-  position: relative;
-  bottom: 22px;
-  left: 2px;
-  display: block;
-  width: 15px;
-  height: 15px;
-  outline: 1px solid #ffffff;
-  outline-offset: 1px;
   opacity: 0;
   background-color: #fff;
-}
-
-.search-form__pseudo-checkbox::after,
-.search-form__pseudo-checkbox::before {
-  transition: opacity 0.3s ease-in-out;
-}
-
-/*Добавляем отметку*/
-.search-form__checkbox:checked+.search-form__pseudo-checkbox::before {
-  opacity: 0;
-}
-
-.search-form__checkbox:checked+.search-form__pseudo-checkbox::after {
-  opacity: 1;
-}
+  min-inline-size: 15px;
+  min-block-size: 15px;
+} 
 
 /*Закрашивание белым цветом чекбокса при нажатии и удержании кнопки мыши на чекбокс*/
 .search-form__label:active:not(:disabled) .search-form__pseudo-checkbox {
@@ -262,18 +232,18 @@ input[type="text"] {
 /*//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 /*////////2 Блок Титул и Карточки////////*/
 .content__details {
-  width: 415px;
-  height: 537px;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items:flex-start;
+  width: 399px;
 }
 
 /*////2.1 Блок Титул ////*/
 /*смотри в окно*/
 .title {
-  display: block;
   width: 260px;
-  height: 210px;
-  margin-bottom: 26px;
-  padding-top: 3px;
+  margin: 0 136px 23px 0;
   color: #FFF;
   font-family: Oswald, sans-serif;
   font-weight: 700;
@@ -297,19 +267,22 @@ input[type="text"] {
 /* всё окно отображение карточек*/
 .content__list {
   position: relative;
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 406px;
+  width: 418px;
   height: 298px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /*Проявление тонкого scrollbar по оси Y при наведении курсора*/
+.content__card-link,
+.preloader,
+.button,
+.more-button-template,
 .content__list:hover {
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: thin;
+  visibility: visible;
 }
 
 .content__list-item {
@@ -328,10 +301,8 @@ input[type="text"] {
 /*Блок: Заголовок и Абзац, Видео*/
 .content__video-card {
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
   width: 398px;
-  height: 107px;
 }
 
 /*Блок Заголовок и Абзац*/
@@ -340,16 +311,13 @@ input[type="text"] {
   flex-direction: column;
   gap: 6px 0;
   width: 200px;
-  height: 101px;
-  margin-top: 2px;
   margin-left: 2px;
 }
 
 .content__video-card-title {
-  width: 100%;
   width: 200px;
-  height: 30px;
-  height: 30px;
+  min-height: 30px;
+  margin-top: 2px;
   color: #FFF;
   font-family: Oswald, sans-serif;
   font-weight: 700;
@@ -363,9 +331,10 @@ input[type="text"] {
 /*Абзац*/
 .content__video-card-description {
   width: 200px;
-  height: 65px;
+  min-height: 65px;
+  margin-bottom: 4px;
   color: #FFF;
-  font-family: "Fira Sans Condensed";
+  font-family: 'Fira Sans Condensed',  sans-serif;
   font-weight: 400;
   font-size: 18px;
   font-style: normal;
@@ -375,9 +344,10 @@ input[type="text"] {
 /*Окно Видео*/
 .content__video-card-thumbnail {
   min-width: 194px;
-  max-height: 104px;
+  max-height: 103px;
   margin: 2px 2px 2px 0;
   object-fit: cover;
+  object-position: top;
 }
 
 .content__card-link:focus {
@@ -417,7 +387,7 @@ input[type="text"] {
   justify-content: center;
   width: 399px;
   height: 34px;
-  font-family: "Fira Sans Condensed";
+  font-family: 'Fira Sans Condensed',  sans-serif;
   font-weight: 700;
   font-size: 18px;
   font-style: normal;
